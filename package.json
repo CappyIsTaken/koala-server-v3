@@ -2,7 +2,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "npx pkgroll"
+    "build": "npx pkgroll",
+    "start": "node dist/index.cjs"
   },
   "engines": {"node": "16.x"},
   "dependencies": {
