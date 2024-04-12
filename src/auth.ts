@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 import { createUser, getAccessTokenFromRefresh, signInToUser, validateOTP } from "./supabase"
 import { zValidator } from "@hono/zod-validator"
-import { UserCreate, UserRefreshToken, UserSignIn } from "./types"
+import { UserCreate, UserOTPVerify, UserRefreshToken, UserSignIn } from "./types"
 
 const authRouter = new Hono()
 
@@ -29,7 +29,7 @@ authRouter.post("/users/refresh", zValidator("json", UserRefreshToken), async (c
     return c.json(response)
 })
 
-authRouter.post("/otp/verify", zValidator("json", UserActivation), async (c) => {
+authRouter.post("/otp/verify", zValidator("json", UserOTPVerify), async (c) => {
     const response = await validateOTP(c.req.valid("json"))
     if(!response.success) {
         c.status(response.error?.status)

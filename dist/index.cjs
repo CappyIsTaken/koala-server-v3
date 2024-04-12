@@ -231,7 +231,7 @@ const UserSignIn = z.object({
   email: z.string().email("This isn't a valid email"),
   password: z.string()
 });
-z.object({
+const UserOTPVerify = z.object({
   email: z.string().email("This isn't a valid email"),
   otp: z.string().min(6).max(6)
 });
@@ -349,7 +349,7 @@ authRouter.post("/users/refresh", zodValidator.zValidator("json", UserRefreshTok
   }
   return c.json(response);
 });
-authRouter.post("/otp/verify", zodValidator.zValidator("json", UserActivation), async (c) => {
+authRouter.post("/otp/verify", zodValidator.zValidator("json", UserOTPVerify), async (c) => {
   const response = await validateOTP(c.req.valid("json"));
   if (!response.success) {
     c.status(response.error?.status);
