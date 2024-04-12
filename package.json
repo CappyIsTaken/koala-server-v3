@@ -4,6 +4,7 @@
     "dev": "tsx watch src/index.ts",
     "build": "npx pkgroll"
   },
+  "engines": {"node": "16.x"},
   "dependencies": {
     "@hono/node-server": "^1.10.0",
     "@hono/zod-validator": "^0.2.1",
